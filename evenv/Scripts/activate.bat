@@ -1,6 +1,6 @@
 @echo off
 
-set "VIRTUAL_ENV=C:\Users\HAND\Documents\490muddev\evenv"
+set "VIRTUAL_ENV=C:\Users\HAND\Documents\GitHub\INST490-Multiplayer-Game\evenv"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"

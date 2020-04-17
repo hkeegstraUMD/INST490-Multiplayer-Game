@@ -28,7 +28,7 @@ def _deactivate(args):
 _deactivate(["nondestructive"])
 aliases["deactivate"] = _deactivate
 
-$VIRTUAL_ENV = r"C:\Users\HAND\Documents\490muddev\evenv"
+$VIRTUAL_ENV = r"C:\Users\HAND\Documents\GitHub\INST490-Multiplayer-Game\evenv"
 
 $_OLD_VIRTUAL_PATH = $PATH
 $PATH = $PATH[:]

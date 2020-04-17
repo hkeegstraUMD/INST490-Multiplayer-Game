@@ -46,7 +46,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='C:\Users\HAND\Documents\490muddev\evenv'
+VIRTUAL_ENV='C:\Users\HAND\Documents\GitHub\INST490-Multiplayer-Game\evenv'
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
