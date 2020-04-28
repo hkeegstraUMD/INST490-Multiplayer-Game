@@ -25,8 +25,49 @@ class CmdColor(default_cmds.MuxCommand):
             target = self.caller
         else:
             target = self.search(self.args)
+        target.db.color = "colorless"
         color = target.db.color
         self.caller.msg("It's '%s'" % color)
+
+class CmdSmile(BaseCommand):
+    """
+    A smile command
+
+    Usage:
+      smile [at] [<someone>]
+      grin [at] [<someone>]
+
+    Smiles to someone in your vicinity or to the room
+    in general.
+
+    (This initial string (the __doc__ string)
+    is also used to auto-generate the help
+    for this command)
+    """
+
+    key = "smile"
+    aliases = ["smile at", "grin", "grin at"]
+    locks = "cmd:all()"
+    help_category = "General"
+
+    def parse(self):
+        "Very trivial parser"
+        self.target = self.args.strip()
+
+    def func(self):
+        "This actually does things"
+        caller = self.caller
+
+        if not self.target or self.target == "here":
+            string = f"{caller.key} smiles"
+        else:
+            target = caller.search(self.target)
+            color = target.db.color
+            if not target: 
+                return 
+            string = f"{caller.key} smiles at {target.key}"
+
+        caller.location.msg_contents("It's '%s'" % color)
 
 class Command(BaseCommand):
     """
