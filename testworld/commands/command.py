@@ -9,25 +9,24 @@ from evennia import Command as BaseCommand
 
 from evennia import default_cmds
 
-class CmdEcho(default_cmds.MuxCommand):
+class CmdColor(default_cmds.MuxCommand):
     """
-    Simple command example
-
-    Usage:
-        echo [text]
     
-    This command simply echoes text back to its caller.
+    Usage:
+        color [text]
+    
+    Returns the color of the target
     """
 
-    key = "echo"
+    key = "color"
 
     def func(self):
-        "This actually does things"
         if not self.args:
-            self.caller.msg("You didn't enter anything!")
+            target = self.caller
         else:
-            self.caller.msg("You gave the string: '%s'" % self.args)
-
+            target = self.search(self.args)
+        color = target.db.color
+        self.caller.msg("It's '%s'" % color)
 
 class Command(BaseCommand):
     """
