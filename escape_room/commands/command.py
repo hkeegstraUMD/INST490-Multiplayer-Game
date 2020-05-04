@@ -22,7 +22,7 @@ class CmdColor(BaseCommand):
     key = "color"
     aliases = ["color of"]
     locks = "cmd:all()"
-    help_category = "General"
+    help_category = "Escape Room Commands"
 
     def parse(self):
         "Very trivial parser"
@@ -54,12 +54,12 @@ class CmdTouch(BaseCommand):
     Usage:
       touch [<something>]
 
-    Touch something
+    Touch something. Who knows what will happen when you do.
     """
 
     key = "touch"
     locks = "cmd:all()"
-    help_category = "General"
+    help_category = "Escape Room Commands"
 
     def parse(self):
         "Very trivial parser"
@@ -76,13 +76,72 @@ class CmdTouch(BaseCommand):
             if not target: 
                 return 
             if(target.db.touchtype == "givecolor"):
-                string = f"You touch {target.key}, and it lights up. Looking down, you're now {target.db.color}!"
+                string = f"You touch {target.key}, and it lights up. Looking down, you have a {target.db.color} aura surrounding you!"
                 caller.db.color = target.db.color
+            elif(target.db.touchtype=="givehint"):
+                color = caller.db.color
+                string = "You hear a mysterious voice in your head. You can't quite make out everything, but you hear it say '"
+                if(color == "red"):
+                    string += f"{target.db.hintred}'"
+                elif(color == "blue"):
+                    string += f"{target.db.hintblue}'"
+                elif(color == "green"):
+                    string += f"{target.db.hintgreen}'"
+                elif(color == "yellow"):
+                    string += f"{target.db.hintyellow}'"    
+                else:
+                    string += f"you have no color'"
+            elif(target.db.touchtype =="giveclue"):
+                color = caller.db.color
+                string = "As you touch it, it reacts to your aura and the patterns settle down, forming to make '"
+                if(color == "red"):
+                    string += f"{target.db.hintred}'"
+                elif(color == "blue"):
+                    string += f"{target.db.hintblue}'"
+                elif(color == "green"):
+                    string += f"{target.db.hintgreen}'"
+                elif(color == "yellow"):
+                    string += f"{target.db.hintyellow}'"    
+                else:
+                    string = f"You touch it, but nothing happens"
             else:
                 string = f"You touch {target.key}, but nothing happens"
                 target.msg(f"You feel a tap from {caller.key}")
 
         self.msg("%s" % string)
+
+class CmdInput(BaseCommand):
+    """
+
+    Usage:
+      Input [into] <target> = <value>
+
+    Input a value to try and solve a puzzle
+    """
+
+    key = "input"
+    aliases = ["input into"]
+    locks = "cmd:all()"
+    help_category = "Escape Room Commands"
+
+    def func(self):
+        "Get the target and the value"
+        try:
+            name, value = self.args.split(" = ", 1)
+        except ValueError:
+            self.msg("Usage: input [into] <target> = <value>")
+            return
+        self.target = name
+        target = self.caller.search(self.target)
+        if not target: 
+                return
+        answer = target.db.answer
+        if (answer == None):
+            self.msg("There's nowhere to input on that")
+        elif (answer == value):
+            self.caller.location.msg_contents(f"After {self.caller.key} inputs their answer, the door to the next room opens!")
+        else:
+            self.msg("You input your answer, but nothing seems to happen")
 
 class Command(BaseCommand):
     """

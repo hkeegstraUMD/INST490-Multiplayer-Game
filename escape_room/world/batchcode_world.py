@@ -27,6 +27,10 @@ puzzle1_entrance = create_object(exits.Exit, key="south", aliases =["s"],
 puzzle1_goal = create_object(exits.Exit, key="north", aliases =["n"], 
                                 location =puzzle1, destination = goal)
 
+hint_one = create_object(artifacts.HintShrine, key = "Large Statue", location = puzzle1)
+clue_one = create_object(artifacts.ClueObject, key = "Mysterious Mural", location = puzzle1)
+input_one = create_object(artifacts.AnswerObject, key = "Input Panel", location = puzzle1)
+
 goal.db.desc = """
 After solving all the puzzles, the players have reached the goal.
 Players may complete the game here, but the door back south remains open.

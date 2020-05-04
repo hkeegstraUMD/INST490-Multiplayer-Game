@@ -47,3 +47,35 @@ class Yellow(DefaultObject):
             self.db.get_err_msg = "The artifact is too heavy to pick up"
             self.db.touchtype = "givecolor"
             self.db.color = "yellow"
+
+class HintShrine(DefaultObject):
+
+        def at_object_creation(self):
+            self.db.desc = "A mysterious statue that seems to depict an important being"
+            self.locks.add("get:false()")
+            self.db.get_err_msg = "The statue is too heavy to pick up"
+            self.db.touchtype = "givehint"
+            self.db.hintred = "combine"
+            self.db.hintgreen = "all"
+            self.db.hintblue = "the"
+            self.db.hintyellow = "numbers"
+
+class ClueObject(DefaultObject):
+
+        def at_object_creation(self):
+            self.db.desc = "A mural covered in hypnotic patterns"
+            self.locks.add("get:false()")
+            self.db.get_err_msg = "The mural is too heavy to pick up"
+            self.db.touchtype = "giveclue"
+            self.db.hintred = "5"
+            self.db.hintgreen = "7"
+            self.db.hintblue = "2"
+            self.db.hintyellow = "4"
+
+class AnswerObject(DefaultObject):
+
+        def at_object_creation(self):
+            self.db.desc = "A panel covered in numbered buttons"
+            self.locks.add("get:false()")
+            self.db.get_err_msg = "The panel is too heavy to pick up"
+            self.db.answer = "18"
