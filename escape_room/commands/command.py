@@ -11,8 +11,6 @@ from evennia import default_cmds
 
 class CmdColor(BaseCommand):
     """
-    A smile command
-
     Usage:
       color [of] [<something>]
 
@@ -49,8 +47,6 @@ class CmdColor(BaseCommand):
 
 class CmdTouch(BaseCommand):
     """
-    A touch command
-
     Usage:
       touch [<something>]
 
@@ -112,7 +108,6 @@ class CmdTouch(BaseCommand):
 
 class CmdInput(BaseCommand):
     """
-
     Usage:
       Input [into] <target> = <value>
 
