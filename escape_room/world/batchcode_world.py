@@ -6,8 +6,12 @@ puzzle1 = create_object(rooms.Room, key = "puzzle1")
 goal = create_object(rooms.Room, key = "exit")
 
 entrance.db.desc = """
-The entrance to the dungeon. Here, players find the artifacts that give them insight.
-There is a door to the north leading to another chamber
+The year is 1524, you and your companions are conquistadores operating for the Spanish Empire in the Americas. Part
+of a force led by Pedro de Alvarado, your team has stumbled upon a pristine untouched temple. Seeing the possibility of
+getting the first pick of valuable treasure for yourselves, you and your friends decide to immediately climb the stairs
+and enter the temple.
+
+Upon entering, the door slams shut behind you, and you find yourself in a room with strangely glowing artifacts.
 """
 
 entrance_puzzle1 = create_object(exits.Exit, key="north", aliases =["n"], 
@@ -19,8 +23,8 @@ green_arti = create_object(artifacts.Green, key = "Green Artifact", location = e
 yellow_arti = create_object(artifacts.Yellow, key = "Yellow Artifact", location = entrance)
 
 puzzle1.db.desc = """
-The first puzzle room. Players will work together to solve the puzzle and get out.
-The door to the south remains open. There is a door to the north that will open when the puzzle is solved.
+You find yourself in another chamber with strange statues and murals.
+There seems to be a closed door with some sort of panel next to it.
 """
 puzzle1_entrance = create_object(exits.Exit, key="south", aliases =["s"], 
                                 location =puzzle1, destination = entrance)
